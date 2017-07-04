@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.novoda.bintray-release'
+
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION as String
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode 2
+        versionName "0.0.2-beta3"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile rootProject.ext.dependencies["support-v7"]
+    compile rootProject.ext.dependencies["support-v4"]
+    compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["cardview"]
+    compile rootProject.ext.dependencies["muitidex"]
+    compile rootProject.ext.dependencies["gson"]
+}
+
+
+ext {
+    PUBLISH_GROUP_ID = 'hk.xhy.android'
+    PUBLISH_ARTIFACT_ID = 'android-common'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+//publish {
+//    userOrg = 'xuhaoyang' // 改成你在 bintray 上注册的用户名
+//    groupId = 'hk.xhy.android' // 改成你的包名（影响别人引用的第一段）
+//    artifactId = 'android-commom' // 改成你的 Library 名字（影响别人引用的第二段）
+//    publishVersion = android.defaultConfig.versionName // 版本号 （影响别人引用的第三段）
+//    desc = 'im common'
+//    website = 'https://github.com/xuhaoyang/android-common.git'
+//}
