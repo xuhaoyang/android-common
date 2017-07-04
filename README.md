@@ -12,19 +12,23 @@
 
 ```
 .
-├── bind      					// 学习参考butterknife注解绑定功能
-├── loader       				// 封装AsyncTaskLoader     
+├── bind                          // 学习参考butterknife注解绑定功能
+├── loader                        // 封装AsyncTaskLoader     
 ├── ui
 │   ├── fragment
-│   │   ├── LoaderFragment    	// AsyncLoader异步处理
-│   │   ├── RecyclerFragment    // 整合原生下拉刷新功能
-│   │   ├── ListFragment    	// 对数据绑定进行封装
-│   │   └── ...      			// 更多省略
-│   ├── vh     					// ViewHolder封装和回调
-├── utils                 		// 常用工具类（第三方+总结）
-├── widget                  	// 第三方或自定义View
-├── Application
-└── XHYInit              		// 框架初始化
+│   │   ├── LoaderFragment.java   // AsyncLoader异步处理
+│   │   ├── RecyclerFragment.java // 整合原生下拉刷新功能
+│   │   ├── ListFragment.java     // 对数据绑定进行封装
+│   │   └── ...                   // 更多省略
+│   ├── vh                        // ViewHolder封装和回调
+│   ├── OnLoadMoreListener.java
+│   ├── LoaderActivity.java
+│   ├── ...
+│   └── WebViewActivity.java
+├── utils                         // 常用工具类（第三方+总结）
+├── widget                        // 第三方或自定义View
+├── Application.java
+└── XHYInit.java                  // 框架初始化
 
 ```
 
