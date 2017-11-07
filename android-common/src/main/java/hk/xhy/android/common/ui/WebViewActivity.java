@@ -9,6 +9,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import hk.xhy.android.common.R;
+import hk.xhy.android.common.utils.ActivityUtils;
 
 import java.util.Map;
 
@@ -26,6 +27,7 @@ public abstract class WebViewActivity extends BaseActivity {
         mWebView = (WebView) findViewById(R.id.webview);
         mWebView.setWebViewClient(mWebViewClient);
         mWebView.setWebChromeClient(mWebChromeClient);
+        ActivityUtils.addActivity(this);
     }
 
     public void loadUrl(String url, Map<String, String> additionalHttpHeaders) {
@@ -97,4 +99,6 @@ public abstract class WebViewActivity extends BaseActivity {
 
 
     };
+
+
 }
