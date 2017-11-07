@@ -1,8 +1,10 @@
 package hk.xhy.android_common_sample.ui;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
@@ -24,16 +26,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewById(R.id.btn_webview)
     AppCompatButton btn_webview;
     private String url = "";
+    @ViewById(R.id.toolbar)
+    Toolbar toolbar;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setSupportActionBar(toolbar);
 
         btn_webview.setOnClickListener(this);
 
+        setImmersiveStatusBar(false,
+                ContextCompat.getColor(this, R.color.colorPrimary));
     }
 
     @Override

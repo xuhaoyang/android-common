@@ -2,9 +2,13 @@ package hk.xhy.android_common_sample.ui.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.webkit.WebView;
 
+import java.util.HashMap;
+
+import hk.xhy.android.common.bind.ViewById;
 import hk.xhy.android.common.utils.ActivityUtils;
 import hk.xhy.android_common_sample.R;
 import hk.xhy.android_common_sample.ui.Base.WebViewActivity;
@@ -17,16 +21,34 @@ import hk.xhy.android_common_sample.utils.Constants;
 public class BrowserActivity extends WebViewActivity {
 
     private String title = "";
+    private String url;
+
+    @ViewById(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
+        setSupportActionBar(toolbar);
+
 //        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_nav_close);
-        String url = getIntent().getStringExtra(Constants.EXTRA_URL);
+        url = getIntent().getStringExtra(Constants.EXTRA_URL);
         title = getIntent().getStringExtra(Constants.EXTRA_TITLE);
-        this.setTitle(title);
-        loadUrl(url);
+        toolbar.setTitle(title);
+        loadUrl(url, new HashMap<String, String>() {{
+            put("mdzz", "sic");
+        }});
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //默认开启JavaScript支持
+        setJavaScriptEnabled(true);
     }
 
     @Override
