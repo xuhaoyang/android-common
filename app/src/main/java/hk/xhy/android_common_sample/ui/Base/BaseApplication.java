@@ -18,13 +18,12 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        XHYInit.initialize(this);
         initLog();
         initCrash();
     }
 
     public static void initLog() {
-        LogUtils.Builder builder = new LogUtils.Builder()
+        LogUtils.Config config = LogUtils.getConfig()
                 .setLogSwitch(BuildConfig.DEBUG)// 设置log总开关，包括输出到控制台和文件，默认开
                 .setConsoleSwitch(BuildConfig.DEBUG)// 设置是否输出到控制台开关，默认开
                 .setGlobalTag(null)// 设置log全局标签，默认为空
@@ -36,7 +35,7 @@ public class BaseApplication extends Application {
                 .setBorderSwitch(true)// 输出日志是否带边框开关，默认开
                 .setConsoleFilter(LogUtils.V)// log的控制台过滤器，和logcat过滤器同理，默认Verbose
                 .setFileFilter(LogUtils.V);// log文件过滤器，和logcat过滤器同理，默认Verbose
-        LogUtils.d(builder.toString());
+        LogUtils.d(config.toString());
     }
 
     private void initCrash() {

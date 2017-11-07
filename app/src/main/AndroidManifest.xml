@@ -24,10 +24,12 @@
         </activity>
         <activity
             android:name=".ui.activity.BrowserActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.activity.Html5Activity"></activity>
+        <activity
+            android:name=".ui.activity.ListSampleActivity"
+            android:label="@string/title_activity_list_sample"
             android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".ui.activity.Html5Activity">
 
         </activity>
     </application>
