@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.novoda.bintray-release'
 
 
 android {
@@ -10,7 +10,7 @@ android {
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
         versionCode 2
-        versionName "0.0.2-beta3"
+        versionName "0.0.2-beta4"
     }
     buildTypes {
         release {
@@ -42,12 +42,12 @@ ext {
     PUBLISH_VERSION = android.defaultConfig.versionName
 }
 
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
-//publish {
-//    userOrg = 'xuhaoyang' // 改成你在 bintray 上注册的用户名
-//    groupId = 'hk.xhy.android' // 改成你的包名（影响别人引用的第一段）
-//    artifactId = 'android-commom' // 改成你的 Library 名字（影响别人引用的第二段）
-//    publishVersion = android.defaultConfig.versionName // 版本号 （影响别人引用的第三段）
-//    desc = 'im common'
-//    website = 'https://github.com/xuhaoyang/android-common.git'
-//}
+//apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+publish {
+    userOrg = 'xuhaoyang' // 改成你在 bintray 上注册的用户名
+    groupId = 'hk.xhy.android' // 改成你的包名（影响别人引用的第一段）
+    artifactId = 'android-common' // 改成你的 Library 名字（影响别人引用的第二段）
+    publishVersion = android.defaultConfig.versionName // 版本号 （影响别人引用的第三段）
+    desc = 'im common'
+    website = 'https://github.com/xuhaoyang/android-common.git'
+}

@@ -15,6 +15,8 @@
     <item name="grid" type="id"/>
     <item name="list" type="id"/>
     <item name="loading" type="id"/>
+    <!--<item name="activity_compat_status_bar" type="layout"/>-->
+    <!--<item name="view_status_bar_place" type="id"/>-->
     <item name="pull_to_refresh" type="id"/>
     <item name="webview" type="id"/>
 </resources>

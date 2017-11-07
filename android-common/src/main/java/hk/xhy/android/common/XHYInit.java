@@ -12,7 +12,7 @@ public class XHYInit {
 
     public static final boolean DEBUG = true;
 
-    public static void initialize(Context context) {
-        Utils.init(context);
+    public static void initialize(Application application) {
+        Utils.init(application);
     }
 }
