@@ -53,20 +53,12 @@ public abstract class ListActivity<VH extends ViewHolder, Item, Result>
 
 
     @Override
-    protected boolean getImmersionStatus() {
-        return AppConfig.isImmersion;
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.addActivity(this);
         Bind.inject(this);
         // 禁止横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if (getImmersionStatus()) {
-            setImmersiveStatusBar(false, ContextCompat.getColor(this, R.color.colorPrimary));
-        }
     }
 
     /**

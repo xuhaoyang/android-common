@@ -35,22 +35,6 @@ public abstract class BaseActivity extends hk.xhy.android.common.ui.BaseActivity
 
         application = (BaseApplication) getApplication();
 
-        //沉浸默认设置颜色
-        if (getImmersionStatus()) {
-            setImmersiveStatusBar(false,
-                    ContextCompat.getColor(this, R.color.colorPrimary));
-        }
-
-    }
-
-    /**
-     * 是否沉浸
-     *
-     * @return
-     */
-    @Override
-    protected boolean getImmersionStatus() {
-        return AppConfig.isImmersion;
     }
 
     protected void intent2Activity(Class<? extends Activity> tarActivity) {

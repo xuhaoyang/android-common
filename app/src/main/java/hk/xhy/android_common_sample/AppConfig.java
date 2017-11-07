@@ -13,6 +13,4 @@ public class AppConfig extends PreferenceUtils {
     public static final boolean DEBUG = BuildConfig.DEBUG;
     public static final boolean isShowLog = DEBUG;
 
-
-    public static boolean isImmersion = false;
 }

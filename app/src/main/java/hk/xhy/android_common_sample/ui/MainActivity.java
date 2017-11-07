@@ -43,8 +43,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btn_webview.setOnClickListener(this);
         btn_list.setOnClickListener(this);
 
-        setImmersiveStatusBar(false,
-                ContextCompat.getColor(this, R.color.colorPrimary));
     }
 
     @Override

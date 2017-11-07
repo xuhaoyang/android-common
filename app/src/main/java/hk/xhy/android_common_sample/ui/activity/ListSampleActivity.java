@@ -55,6 +55,8 @@ public class ListSampleActivity extends ListActivity<SimpleStringViewHolder, Ite
         //开启自定义底部加载item
         setFooterShowEnable(false);
 
+
+        //沉浸式
         BarUtils.setStatusBarAlpha(this, 0);
         BarUtils.addMarginTopEqualStatusBarHeight(toolbar);// 其实这个只需要调用一次即可
     }
