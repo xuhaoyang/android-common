@@ -46,9 +46,6 @@ public class BrowserActivity extends WebViewActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        //默认开启JavaScript支持
-        setJavaScriptEnabled(true);
     }
 
     @Override

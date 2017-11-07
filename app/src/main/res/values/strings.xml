@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">android-common-sample</string>
+    <string name="ok">OK</string>
+    <string name="cancel">cancel</string>
+    <string name="title_activity_list_sample">ListSampleActivity</string>
+    <string name="list_error">load failed,touch reload</string>
+    <string name="list_loading" translatable="false">loading...</string>
+    <string name="list_empty">nothing</string>
 </resources>

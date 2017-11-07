@@ -22,15 +22,6 @@ public class WebViewActivity extends hk.xhy.android.common.ui.WebViewActivity {
     private final String TAG = this.getClass().getSimpleName();
     private final boolean isImmersion = true;
 
-    /**
-     * 是否沉浸
-     *
-     * @return
-     */
-    @Override
-    protected boolean getImmersionStatus() {
-        return isImmersion;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +29,12 @@ public class WebViewActivity extends hk.xhy.android.common.ui.WebViewActivity {
 
         // 竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //沉浸默认设置颜色
-        if (getImmersionStatus()) {
-            setImmersiveStatusBar(false,
-                    ContextCompat.getColor(this, R.color.colorPrimary));
-        }
     }
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-
+        setJavaScriptEnabled(true);
         //开启调试
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE)) {
