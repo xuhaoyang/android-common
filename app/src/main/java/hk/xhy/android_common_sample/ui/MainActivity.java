@@ -11,7 +11,8 @@ import android.widget.EditText;
 import java.util.HashMap;
 
 import hk.xhy.android.common.bind.ViewById;
-import hk.xhy.android.common.utils.ActivityUtils;
+import hk.xhy.android_common_sample.ui.activity.ListSampleActivity;
+import hk.xhy.android_common_sample.utils.ActivityUtils;
 import hk.xhy.android.common.utils.RegexUtils;
 import hk.xhy.android_common_sample.R;
 import hk.xhy.android_common_sample.ui.Base.BaseActivity;
@@ -25,11 +26,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     EditText edUrl;
     @ViewById(R.id.btn_webview)
     AppCompatButton btn_webview;
+    @ViewById(R.id.btn_list)
+    AppCompatButton btn_list;
+
     private String url = "";
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
-
-
 
 
     @Override
@@ -39,6 +41,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setSupportActionBar(toolbar);
 
         btn_webview.setOnClickListener(this);
+        btn_list.setOnClickListener(this);
 
         setImmersiveStatusBar(false,
                 ContextCompat.getColor(this, R.color.colorPrimary));
@@ -64,6 +67,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                ActivityUtils.startActivity(this, Html5Activity.class, new HashMap<String, Object>() {{
 //                    put("url", url);
 //                }});
+                break;
+            case R.id.btn_list:
+                ActivityUtils.startActivity(this, ListSampleActivity.class);
+                break;
 
         }
 

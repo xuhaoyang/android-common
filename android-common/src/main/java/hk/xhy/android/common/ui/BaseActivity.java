@@ -31,6 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private FrameLayout mFrameLayoutContent;
     private View mViewStatusBarPlace;
+    private View immersionLayout;
 
     protected abstract boolean getImmersionStatus();
 
@@ -38,16 +39,23 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //状态栏沉浸 初始化
+//        //状态栏沉浸 初始化
         if (getImmersionStatus()) {
-            super.setContentView(R.layout.activity_compat_status_bar);
-            mViewStatusBarPlace = findViewById(R.id.view_status_bar_place);
-            mFrameLayoutContent = (FrameLayout) findViewById(R.id.frame_layout_content_place);
+
+            immersionLayout = LayoutInflater.from(this).inflate(R.layout.activity_compat_status_bar, null);
+            mViewStatusBarPlace = immersionLayout.findViewById(R.id.view_status_bar_place);
+            mFrameLayoutContent = (FrameLayout) immersionLayout.findViewById(R.id.frame_layout_content_place);
 
             ViewGroup.LayoutParams params = mViewStatusBarPlace.getLayoutParams();
             params.height = getStatusBarHeight();
             mViewStatusBarPlace.setLayoutParams(params);
+
         }
+    }
+
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
     }
 
     @Override
@@ -56,6 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (getImmersionStatus()) {
             View contentView = LayoutInflater.from(this).inflate(layoutResID, null);
             mFrameLayoutContent.addView(contentView);
+            setContentView(immersionLayout);
         } else {
             super.setContentView(layoutResID);
         }
