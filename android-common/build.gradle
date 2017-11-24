@@ -10,7 +10,7 @@ android {
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
         versionCode 2
-        versionName "0.0.2-beta4"
+        versionName "0.0.2-beta5"
     }
     buildTypes {
         release {

@@ -42,6 +42,24 @@ public class BrowserActivity extends WebViewActivity {
 
     }
 
+    /**
+     * onLoadResource//加载资源时响应
+     　　onPageStart//在加载页面时响应
+     　　onPageFinish//在加载页面结束时响应
+     　　onReceiveError//在加载出错时响应
+     　　onReceivedHttpAuthRequest//获取返回信息授权请求
+     */
+
+    /**
+     * onCloseWindow//关闭WebView
+     　　onCreateWindow() //触发创建一个新的窗口
+     　　onJsAlert //触发弹出一个对话框
+     　　onJsPrompt //触发弹出一个提示
+     　　onJsConfirm//触发弹出确认提示
+     　　onProgressChanged //加载进度
+     　　onReceivedIcon //获取网页icon
+     　　onReceivedTitle//获取网页title
+     */
 
     @Override
     protected void onStart() {

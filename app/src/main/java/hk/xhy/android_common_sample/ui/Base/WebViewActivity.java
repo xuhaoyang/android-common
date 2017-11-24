@@ -5,8 +5,10 @@ import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.view.ViewGroup;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
 
 import hk.xhy.android.common.utils.ActivityUtils;
@@ -29,6 +31,7 @@ public class WebViewActivity extends hk.xhy.android.common.ui.WebViewActivity {
 
         // 竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        ActivityUtils.addActivity(this);
     }
 
     @Override
@@ -43,6 +46,7 @@ public class WebViewActivity extends hk.xhy.android.common.ui.WebViewActivity {
         }
 
     }
+
 
     @Override
     public void onResume() {
@@ -64,6 +68,24 @@ public class WebViewActivity extends hk.xhy.android.common.ui.WebViewActivity {
     @Override
     public void onPageFinished(WebView webView, String s) {
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+        if (!detail.didCrash()) {
+            WebView mWebView = getWebView();
+            mWebView.clearHistory();
+            ((ViewGroup) mWebView.getParent()).removeView(mWebView);
+            mWebView.loadUrl("about:blank");
+            mWebView.stopLoading();
+            mWebView.setWebChromeClient(null);
+            mWebView.setWebViewClient(null);
+            mWebView.destroy();
+            mWebView = null;
+            return true;
+        }
+        return false;
     }
 
     @Override

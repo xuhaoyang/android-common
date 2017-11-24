@@ -6,4 +6,8 @@
     <string name="list_error">load failed,touch reload</string>
     <string name="list_loading" translatable="false">loading...</string>
     <string name="list_empty">nothing</string>
+    <string name="title_activity_webviewjsdemo">WebviewJavaScriptDemoActivity</string>
+    <string name="action_notifications">通知</string>
+    <string name="action_close">通知</string>
+
 </resources>

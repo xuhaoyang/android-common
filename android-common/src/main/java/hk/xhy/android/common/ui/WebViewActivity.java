@@ -1,10 +1,14 @@
 package hk.xhy.android.common.ui;
 
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -14,6 +18,7 @@ import android.widget.ProgressBar;
 import hk.xhy.android.common.R;
 import hk.xhy.android.common.utils.ActivityUtils;
 import hk.xhy.android.common.utils.EmptyUtils;
+import hk.xhy.android.common.utils.LogUtils;
 
 import java.util.Map;
 
@@ -50,6 +55,8 @@ public abstract class WebViewActivity extends BaseActivity {
                                 String description, String failingUrl) {
     }
 
+    public abstract boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail);
+
     public void onProgressChanged(WebView view, int newProgress) {
         if (mProgress != null) {
             mProgress.setMax(100);
@@ -77,6 +84,16 @@ public abstract class WebViewActivity extends BaseActivity {
     }
 
     public WebViewClient mWebViewClient = new WebViewClient() {
+
+        @Override
+        public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+               return WebViewActivity.this.onRenderProcessGone(view, detail);
+            } else {
+                return super.onRenderProcessGone(view, detail);
+            }
+        }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
