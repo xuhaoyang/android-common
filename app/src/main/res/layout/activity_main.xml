@@ -26,11 +26,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="加载" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="保存" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_webview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="开始浏览" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_webviewdemo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_webviewjsdemo"
+        android:textAllCaps="false" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_list"

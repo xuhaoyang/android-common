@@ -13,4 +13,13 @@ public class AppConfig extends PreferenceUtils {
     public static final boolean DEBUG = BuildConfig.DEBUG;
     public static final boolean isShowLog = DEBUG;
 
+    public static void saveUrl(String url) {
+        putString("url", url);
+    }
+
+    public static String loadUrl() {
+        return getString("url", "");
+    }
+
+
 }

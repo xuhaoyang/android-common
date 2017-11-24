@@ -42,7 +42,7 @@ public class WebviewJavaScriptDemoActivity extends WebViewActivity {
 
         loadUrl(LOADURL);
 
-        getWebView().addJavascriptInterface(this, "test");
+        getWebView().addJavascriptInterface(new JavaScriptInterface(), "test");
         webview_btn.setText("Native调用js函数");
 
         webview_btn.setOnClickListener(new View.OnClickListener() {
@@ -83,53 +83,56 @@ public class WebviewJavaScriptDemoActivity extends WebViewActivity {
         ActivityUtils.finishActivity();
     }
 
+    public class JavaScriptInterface {
 
-    @JavascriptInterface
-    public void actionFromJs() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ToastUtils.showShort("js调用了Native函数");
-                LogUtils.d("js调用了Native函数");
-            }
-        });
-    }
 
-    @JavascriptInterface
-    public void actionFromJsWithParam(final String str) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ToastUtils.showShort("js调用了Native函数传递参数：" + str);
-                LogUtils.d("js调用了Native函数传递参数：" + str);
+        @JavascriptInterface
+        public void actionFromJs() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtils.showShort("js调用了Native函数");
+                    LogUtils.d("js调用了Native函数");
+                }
+            });
+        }
 
-            }
-        });
-
-    }
-
-    @JavascriptInterface
-    public void actionFromJsShowWebViewVersion() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                PackageInfo webViewPackageInfo = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    //TODO 找个android8.0的测试下
-                    webViewPackageInfo = WebView.getCurrentWebViewPackage();
-                    if (webViewPackageInfo == null) {
-                        ToastUtils.showShort("webview==null");
-
-                    } else {
-                        ToastUtils.showShort(webViewPackageInfo.versionName);
-                    }
-
-                } else {
-                    ToastUtils.showShort("没有这个方法");
+        @JavascriptInterface
+        public void actionFromJsWithParam(final String str) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtils.showShort("js调用了Native函数传递参数：" + str);
+                    LogUtils.d("js调用了Native函数传递参数：" + str);
 
                 }
-            }
-        });
+            });
 
+        }
+
+        @JavascriptInterface
+        public void actionFromJsShowWebViewVersion() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    PackageInfo webViewPackageInfo = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        //TODO 找个android8.0的测试下
+                        webViewPackageInfo = WebView.getCurrentWebViewPackage();
+                        if (webViewPackageInfo == null) {
+                            ToastUtils.showShort("webview==null");
+
+                        } else {
+                            ToastUtils.showShort(webViewPackageInfo.versionName);
+                        }
+
+                    } else {
+                        ToastUtils.showShort("没有这个方法");
+
+                    }
+                }
+            });
+
+        }
     }
 }

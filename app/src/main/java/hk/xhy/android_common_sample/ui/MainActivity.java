@@ -16,9 +16,7 @@ import hk.xhy.android_common_sample.AppConfig;
 import hk.xhy.android_common_sample.R;
 import hk.xhy.android_common_sample.ui.Base.BaseActivity;
 import hk.xhy.android_common_sample.ui.activity.BrowserActivity;
-import hk.xhy.android_common_sample.ui.activity.EchatWebViewActivity;
 import hk.xhy.android_common_sample.ui.activity.ListSampleActivity;
-import hk.xhy.android_common_sample.ui.activity.OkhttpActivity;
 import hk.xhy.android_common_sample.ui.activity.WebviewJavaScriptDemoActivity;
 import hk.xhy.android_common_sample.utils.ActivityUtils;
 import hk.xhy.android_common_sample.utils.Constants;
@@ -39,10 +37,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     AppCompatButton btn_save;
     @ViewById(R.id.btn_webviewdemo1)
     AppCompatButton btn_webviewdemo1;
-    @ViewById(R.id.btn_echat)
-    AppCompatButton btn_echat;
-    @ViewById(R.id.btn_okhttp)
-    AppCompatButton btn_okhttp;
 
 
     private String url = "";
@@ -60,9 +54,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btn_load.setOnClickListener(this);
         btn_save.setOnClickListener(this);
         btn_webviewdemo1.setOnClickListener(this);
-        btn_echat.setOnClickListener(this);
-        btn_okhttp.setOnClickListener(this);
-//        edUrl.setText();
 
     }
 
@@ -98,13 +89,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btn_list:
                 ActivityUtils.startActivity(this, ListSampleActivity.class);
                 break;
-
-            case R.id.btn_echat:
-                ActivityUtils.startActivity(this, EchatWebViewActivity.class);
-                break;
-            case R.id.btn_okhttp:
-                ActivityUtils.startActivity(this, OkhttpActivity.class);
-                break;
         }
 
     }
@@ -125,7 +109,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (id) {
             case R.id.action_notifications:
                 ToastUtils.showShort("action_notifications");
-                ActivityUtils.startActivity(this, EchatWebViewActivity.class);
+//                ActivityUtils.startActivity(this, EchatWebViewActivity.class);
 
                 break;
         }
