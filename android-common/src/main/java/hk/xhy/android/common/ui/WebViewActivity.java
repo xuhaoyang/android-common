@@ -1,17 +1,11 @@
 package hk.xhy.android.common.ui;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.RenderProcessGoneDetail;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -20,12 +14,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import hk.xhy.android.common.R;
-import hk.xhy.android.common.utils.ActivityUtils;
-import hk.xhy.android.common.utils.EmptyUtils;
-import hk.xhy.android.common.utils.LogUtils;
-
 import java.util.Map;
+
+import hk.xhy.android.common.R;
 
 /**
  * Created by xuhaoyang on 2/24/16.
@@ -59,8 +50,6 @@ public abstract class WebViewActivity extends BaseActivity {
     public void onReceivedError(WebView view, int errorCode,
                                 String description, String failingUrl) {
     }
-
-    public abstract boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail);
 
     public void onProgressChanged(WebView view, int newProgress) {
         if (mProgress != null) {
@@ -127,14 +116,6 @@ public abstract class WebViewActivity extends BaseActivity {
             return WebViewActivity.this.shouldOverrideUrlLoading(view, url);
         }
 
-        @Override
-        public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                return WebViewActivity.this.onRenderProcessGone(view, detail);
-            } else {
-                return super.onRenderProcessGone(view, detail);
-            }
-        }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {

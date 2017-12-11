@@ -70,24 +70,6 @@ public class WebViewActivity extends hk.xhy.android.common.ui.WebViewActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-        if (!detail.didCrash()) {
-            WebView mWebView = getWebView();
-            mWebView.clearHistory();
-            ((ViewGroup) mWebView.getParent()).removeView(mWebView);
-            mWebView.loadUrl("about:blank");
-            mWebView.stopLoading();
-            mWebView.setWebChromeClient(null);
-            mWebView.setWebViewClient(null);
-            mWebView.destroy();
-            mWebView = null;
-            return true;
-        }
-        return false;
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
