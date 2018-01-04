@@ -4,6 +4,7 @@ import android.content.Context;
 
 import hk.xhy.android.common.utils.PreferenceUtils;
 import hk.xhy.android.common.utils.Utils;
+import android.app.Application;
 
 /**
  * Created by xuhaoyang on 16/9/7.
