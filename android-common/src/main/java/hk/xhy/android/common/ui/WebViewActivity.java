@@ -1,26 +1,22 @@
 package hk.xhy.android.common.ui;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.support.annotation.RequiresApi;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.RenderProcessGoneDetail;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import hk.xhy.android.common.R;
-import hk.xhy.android.common.utils.ActivityUtils;
-import hk.xhy.android.common.utils.EmptyUtils;
-import hk.xhy.android.common.utils.LogUtils;
-
 import java.util.Map;
+
+import hk.xhy.android.common.R;
 
 /**
  * Created by xuhaoyang on 2/24/16.
@@ -55,8 +51,6 @@ public abstract class WebViewActivity extends BaseActivity {
                                 String description, String failingUrl) {
     }
 
-    public abstract boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail);
-
     public void onProgressChanged(WebView view, int newProgress) {
         if (mProgress != null) {
             mProgress.setMax(100);
@@ -69,6 +63,32 @@ public abstract class WebViewActivity extends BaseActivity {
     }
 
     public void onReceivedTitle(WebView view, String title) {
+    }
+
+    @SuppressLint("NewApi")
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        return shouldOverrideUrlLoading(view, request.getUrl().toString());
+    }
+
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        return false;
+    }
+
+    /**
+     * >= Android 3.0
+     * <  Android 5.0
+     *
+     * @param valueCallback
+     * @param acceptType
+     * @param capture
+     */
+    public void openFileChooser(ValueCallback<Uri> valueCallback, String acceptType, String capture) {
+
+    }
+
+    public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback,
+                                     WebChromeClient.FileChooserParams fileChooserParams) {
+        return false;
     }
 
     public WebView getWebView() {
@@ -85,15 +105,17 @@ public abstract class WebViewActivity extends BaseActivity {
 
     public WebViewClient mWebViewClient = new WebViewClient() {
 
+        //>= Android 5.0
         @Override
-        public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-               return WebViewActivity.this.onRenderProcessGone(view, detail);
-            } else {
-                return super.onRenderProcessGone(view, detail);
-            }
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            return WebViewActivity.this.shouldOverrideUrlLoading(view, request);
         }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return WebViewActivity.this.shouldOverrideUrlLoading(view, url);
+        }
+
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -121,6 +143,22 @@ public abstract class WebViewActivity extends BaseActivity {
             WebViewActivity.this.onReceivedTitle(view, title);
         }
 
+        // For Android  >= 3.0
+        public void openFileChooser(ValueCallback<Uri> valueCallback, String acceptType) {
+            WebViewActivity.this.openFileChooser(valueCallback, acceptType, null);
+        }
+
+        //For Android  >= 4.1
+        public void openFileChooser(ValueCallback<Uri> valueCallback, String acceptType, String capture) {
+            WebViewActivity.this.openFileChooser(valueCallback, acceptType, capture);
+        }
+
+        // For Android >= 5.0
+        @Override
+        public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback,
+                                         FileChooserParams fileChooserParams) {
+            return WebViewActivity.this.onShowFileChooser(webView, filePathCallback, fileChooserParams);
+        }
 
     };
 }
