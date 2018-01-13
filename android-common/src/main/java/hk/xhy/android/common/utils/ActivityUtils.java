@@ -30,18 +30,19 @@ public class ActivityUtils {
     }
 
     /**
-     * 判断是否存在Activity
+     * 判断 Activity 是否存在
      *
      * @param packageName 包名
-     * @param className   activity全路径类名
+     * @param className   activity 全路径类名
      * @return {@code true}: 是<br>{@code false}: 否
      */
-    public static boolean isActivityExists(@NonNull final String packageName, @NonNull final String className) {
+    public static boolean isActivityExists(@NonNull final String packageName,
+                                           @NonNull final String className) {
         Intent intent = new Intent();
         intent.setClassName(packageName, className);
-        return !(Utils.getContext().getPackageManager().resolveActivity(intent, 0) == null ||
-                intent.resolveActivity(Utils.getContext().getPackageManager()) == null ||
-                Utils.getContext().getPackageManager().queryIntentActivities(intent, 0).size() == 0);
+        return !(Utils.getApp().getPackageManager().resolveActivity(intent, 0) == null ||
+                intent.resolveActivity(Utils.getApp().getPackageManager()) == null ||
+                Utils.getApp().getPackageManager().queryIntentActivities(intent, 0).size() == 0);
     }
 
 

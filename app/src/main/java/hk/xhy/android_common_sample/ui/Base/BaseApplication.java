@@ -1,5 +1,10 @@
 package hk.xhy.android_common_sample.ui.Base;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+
 import java.io.IOException;
 
 import hk.xhy.android.common.Application;
@@ -8,6 +13,7 @@ import hk.xhy.android.common.utils.CrashUtils;
 import hk.xhy.android.common.utils.FileUtils;
 import hk.xhy.android.common.utils.LogUtils;
 import hk.xhy.android_common_sample.BuildConfig;
+import hk.xhy.android_common_sample.utils.ActivityUtils;
 
 /**
  * Created by xuhaoyang on 2017/7/4.
@@ -39,7 +45,27 @@ public class BaseApplication extends Application {
     }
 
     private void initCrash() {
-        CrashUtils.init();
+        CrashUtils.init(new CrashUtils.OnCrashListener() {
+            @Override
+            public void onCrash(Throwable e) {
+                e.printStackTrace();
+                restartApp();
+            }
+        });
+    }
+
+
+    private void restartApp() {
+        Intent intent = new Intent();
+        intent.setClassName("hk.xhy.android_common_sample", "hk.xhy.android_common_sample.ui.MainActivity");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent restartIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        AlarmManager manager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        if (manager == null) return;
+        manager.set(AlarmManager.RTC, System.currentTimeMillis() + 1, restartIntent);
+        ActivityUtils.finishActivity();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
 }
