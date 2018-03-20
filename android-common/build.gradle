@@ -10,7 +10,7 @@ android {
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
         versionCode 3
-        versionName "0.0.3-beta7"
+        versionName "0.0.3-beta10"
     }
     buildTypes {
         release {
@@ -25,14 +25,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile rootProject.ext.dependencies["support-v7"]
-    compile rootProject.ext.dependencies["support-v4"]
-    compile rootProject.ext.dependencies["design"]
-    compile rootProject.ext.dependencies["cardview"]
-    compile rootProject.ext.dependencies["muitidex"]
-    compile rootProject.ext.dependencies["gson"]
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compileOnly rootProject.ext.dependencies["support-v7"]
+    compileOnly rootProject.ext.dependencies["support-v4"]
+    compileOnly rootProject.ext.dependencies["design"]
+    compileOnly rootProject.ext.dependencies["cardview"]
+    compileOnly rootProject.ext.dependencies["gson"]
 }
 
 
